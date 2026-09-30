@@ -10,7 +10,7 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, title, subtitle, children }: PageHeroProps) {
   return (
-    <section className="relative flex min-h-[60vh] items-center overflow-hidden pt-16">
+    <section className="relative z-0 flex min-h-[60vh] items-center overflow-hidden pt-16">
       <HeroBackdrop />
       <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
         {eyebrow ? (

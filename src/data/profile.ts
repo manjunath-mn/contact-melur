@@ -1,4 +1,5 @@
 import type { NavLink, Profile } from '@/types'
+import heroPortrait from '@/assets/hero-portrait.png'
 
 export const profile: Profile = {
   name: 'Manjunath Melur Nagaraj',
@@ -12,6 +13,11 @@ export const profile: Profile = {
   location: 'Manchester, UK',
   email: 'manjunathnmelur@gmail.com',
   phone: '+44 7747 988414',
+  // TODO: swap in your real LinkedIn profile photo (drop the file in src/assets
+  // and point this at it, e.g. avatarUrl: linkedinPhoto — see src/pages/AboutPage.tsx).
+  avatarUrl: undefined,
+  heroPortraitUrl: heroPortrait,
+  heroBlurb: 'OPEN TO FRONT-END ROLES AND FREELANCE COLLABORATIONS ACROSS THE UK.',
   socials: [
     // TODO: swap in your real GitHub / LinkedIn URLs.
     { label: 'GitHub', href: 'https://github.com' },
