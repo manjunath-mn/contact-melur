@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
+import { useSectionMount } from '@/components/layout/SectionMountContext'
 
 interface LazySectionProps {
   id: string
   children: ReactNode
-  /** Mount immediately instead of waiting for the viewport — used for the
-   * section a deep link (e.g. /work) points at, and everything above it, so
-   * there's no empty gap to scroll through on first load. */
-  forceMount?: boolean
   /** Rough expected height, used only for the unmounted placeholder so the
    * page doesn't jump once the real content mounts in. */
   minHeight?: string
@@ -16,9 +13,15 @@ interface LazySectionProps {
  * Mounts its children only once the section is about to enter the viewport,
  * instead of rendering every page's content (including the heavy sandboxed
  * Experience sketchbook) up front. Stays mounted permanently afterwards.
+ *
+ * Mount state lives in SectionMountContext (not local state) so that
+ * ScrollToSection can force sections to mount ahead of a programmatic jump —
+ * see that component for why: scrolling to a still-lazy section drifts off
+ * target as sections upstream pop from placeholder to real height mid-flight.
  */
-export function LazySection({ id, children, forceMount = false, minHeight = '60vh' }: LazySectionProps) {
-  const [mounted, setMounted] = useState(forceMount)
+export function LazySection({ id, children, minHeight = '60vh' }: LazySectionProps) {
+  const { mountedIds, markMounted } = useSectionMount()
+  const mounted = mountedIds.has(id)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export function LazySection({ id, children, forceMount = false, minHeight = '60v
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
-          setMounted(true)
+          markMounted(id)
           observer.disconnect()
         }
       },
@@ -38,7 +41,7 @@ export function LazySection({ id, children, forceMount = false, minHeight = '60v
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [mounted])
+  }, [mounted, id, markMounted])
 
   return (
     <div id={id} ref={ref} className="scroll-mt-16">

@@ -26,7 +26,7 @@ export function ContentRow({ title, children }: ContentRowProps) {
   }
 
   return (
-    <section className="group/row relative mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <section className="group/row relative mx-auto max-w-6xl px-4 py-6 sm:px-6">
       <h2 className="liquid-text mb-4 w-fit text-xl font-bold">{title}</h2>
 
       <Button
@@ -41,7 +41,7 @@ export function ContentRow({ title, children }: ContentRowProps) {
 
       <div
         ref={scrollRef}
-        className="no-scrollbar flex justify-center gap-4 overflow-x-auto scroll-smooth px-8 py-8 sm:px-10"
+        className="no-scrollbar flex justify-center gap-4 overflow-x-auto scroll-smooth px-8 pt-16 pb-8 sm:px-10"
       >
         {children}
       </div>
