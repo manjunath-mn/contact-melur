@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { SpotlightText } from '@/components/sections/SpotlightText'
 
 interface ProfileHeroProps {
   name: string
@@ -44,8 +45,10 @@ export function ProfileHero({ name, tagline, blurb, portraitUrl, children }: Pro
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 pb-16 sm:px-6 md:grid-cols-[1fr_auto] md:items-end">
         <h1 className="hyphens-none max-w-xl text-5xl leading-[0.95] font-semibold tracking-tight sm:text-6xl md:text-7xl">
-          <span className="block text-foreground">{name}</span>
-          {tagline ? <span className="mt-1 block font-normal text-muted-foreground">{tagline}</span> : null}
+          <span className="liquid-text block text-foreground">{name}</span>
+          {tagline ? (
+            <SpotlightText text={tagline} className="mt-1 font-normal text-muted-foreground" />
+          ) : null}
         </h1>
 
         {blurb || children ? (

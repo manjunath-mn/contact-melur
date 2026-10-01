@@ -43,9 +43,9 @@ export const profile: Profile = {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'About Me', path: '/' },
-  { label: 'Experience', path: '/experience' },
-  { label: 'Recent Work', path: '/work' },
-  { label: 'Education', path: '/education' },
-  { label: 'Contact Me', path: '/contact' },
+  { label: 'About Me', path: '/', sectionId: 'about' },
+  { label: 'Experience', path: '/experience', sectionId: 'experience' },
+  { label: 'Recent Work', path: '/work', sectionId: 'work' },
+  { label: 'Education', path: '/education', sectionId: 'education' },
+  { label: 'Contact Me', path: '/contact', sectionId: 'contact' },
 ]

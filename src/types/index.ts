@@ -1,6 +1,7 @@
 export interface NavLink {
   label: string
   path: string
+  sectionId: string
 }
 
 export interface SocialLink {
@@ -33,6 +34,8 @@ export interface Project {
   liveUrl?: string
   repoUrl?: string
   year: number
+  organization?: string
+  logoUrl?: string
 }
 
 export interface ExperienceEntry {
@@ -55,4 +58,5 @@ export interface EducationEntry {
   endYear: number | 'Present'
   description?: string
   highlights?: string[]
+  logoUrl?: string
 }

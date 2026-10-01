@@ -8,14 +8,23 @@ interface EducationCardProps {
 
 export function EducationCard({ entry }: EducationCardProps) {
   return (
-    <Card className="w-80 flex-none border-border bg-card transition-transform duration-300 hover:scale-105 hover:border-primary/50">
+    <Card className="relative w-80 min-h-[380px] flex-none origin-bottom border-border bg-card transition-all duration-300 ease-out hover:z-10 hover:scale-110 hover:border-primary/50 hover:shadow-2xl hover:shadow-black/40">
       <CardHeader>
-        <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-          {entry.startYear} &ndash; {entry.endYear}
-        </p>
-        <CardTitle className="text-lg">{entry.institution}</CardTitle>
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-mono text-lg font-medium text-primary">
+            {entry.startYear} &ndash; {entry.endYear}
+          </p>
+          {entry.logoUrl ? (
+            <img
+              src={entry.logoUrl}
+              alt={`${entry.institution} logo`}
+              className="h-8 w-auto max-w-28 flex-none object-contain object-right"
+            />
+          ) : null}
+        </div>
+        <CardTitle className="mt-1 text-lg">{entry.institution}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-4">
         <p className="text-sm font-medium text-foreground">
           {entry.degree}, {entry.field}
         </p>

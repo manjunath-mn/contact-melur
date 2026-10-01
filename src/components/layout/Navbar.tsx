@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Menu } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { navLinks } from '@/data/profile'
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -12,24 +13,31 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 
-function NavItems({ className, onNavigate }: { className?: string; onNavigate?: () => void }) {
+const sectionIds = navLinks.map((link) => link.sectionId)
+
+function NavItems({
+  className,
+  activeId,
+  onNavigate,
+}: {
+  className?: string
+  activeId: string
+  onNavigate?: () => void
+}) {
   return (
     <nav className={className}>
       {navLinks.map((link) => (
-        <NavLink
+        <Link
           key={link.path}
           to={link.path}
-          end={link.path === '/'}
           onClick={onNavigate}
-          className={({ isActive }) =>
-            cn(
-              'text-sm font-medium tracking-wide transition-colors hover:text-foreground',
-              isActive ? 'text-foreground' : 'text-muted-foreground',
-            )
-          }
+          className={cn(
+            'liquid-glass rounded-full px-3 py-1.5 text-sm font-medium tracking-wide transition-colors hover:text-foreground',
+            activeId === link.sectionId ? 'text-foreground' : 'text-muted-foreground',
+          )}
         >
           {link.label}
-        </NavLink>
+        </Link>
       ))}
     </nav>
   )
@@ -37,6 +45,8 @@ function NavItems({ className, onNavigate }: { className?: string; onNavigate?: 
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const activeId = useActiveSection(sectionIds)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -49,17 +59,19 @@ export function Navbar() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
-        scrolled ? 'bg-background/95 shadow-md backdrop-blur' : 'bg-gradient-to-b from-background/80 to-transparent',
+        scrolled
+          ? 'liquid-panel bg-background/95 shadow-md backdrop-blur'
+          : 'bg-gradient-to-b from-background/80 to-transparent',
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <NavLink to="/" className="text-2xl font-black tracking-tight text-primary">
+        <Link to="/" className="liquid-text text-2xl tracking-tight text-primary">
           CONTACT MELUR
-        </NavLink>
+        </Link>
 
-        <NavItems className="hidden items-center gap-8 md:flex" />
+        <NavItems className="hidden items-center gap-8 md:flex" activeId={activeId} />
 
-        <Sheet>
+        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
               <Menu className="size-5" />
@@ -69,7 +81,11 @@ export function Navbar() {
             <SheetHeader>
               <SheetTitle className="text-left text-primary">MELUR</SheetTitle>
             </SheetHeader>
-            <NavItems className="mt-4 flex flex-col gap-6 px-4" />
+            <NavItems
+              className="mt-4 flex flex-col gap-6 px-4"
+              activeId={activeId}
+              onNavigate={() => setMobileOpen(false)}
+            />
           </SheetContent>
         </Sheet>
       </div>

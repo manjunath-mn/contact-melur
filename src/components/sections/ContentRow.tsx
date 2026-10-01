@@ -26,22 +26,22 @@ export function ContentRow({ title, children }: ContentRowProps) {
   }
 
   return (
-    <section className="group/row relative py-6">
-      <h2 className="mb-4 px-4 text-xl font-bold sm:px-6">{title}</h2>
+    <section className="group/row relative mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <h2 className="liquid-text mb-4 w-fit text-xl font-bold">{title}</h2>
 
       <Button
         variant="secondary"
         size="icon"
         aria-label="Scroll left"
         onClick={() => scrollByAmount('left')}
-        className="absolute top-1/2 left-1 z-10 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover/row:opacity-100 sm:flex"
+        className="absolute top-1/2 left-0 z-10 hidden -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover/row:opacity-100 sm:flex"
       >
         <ChevronLeft className="size-5" />
       </Button>
 
       <div
         ref={scrollRef}
-        className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-4 pb-2 sm:px-6"
+        className="no-scrollbar flex justify-center gap-4 overflow-x-auto scroll-smooth px-8 py-8 sm:px-10"
       >
         {children}
       </div>
@@ -51,7 +51,7 @@ export function ContentRow({ title, children }: ContentRowProps) {
         size="icon"
         aria-label="Scroll right"
         onClick={() => scrollByAmount('right')}
-        className="absolute top-1/2 right-1 z-10 hidden -translate-y-1/2 opacity-0 transition-opacity group-hover/row:opacity-100 sm:flex"
+        className="absolute top-1/2 right-0 z-10 hidden translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover/row:opacity-100 sm:flex"
       >
         <ChevronRight className="size-5" />
       </Button>

@@ -5,17 +5,32 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false)
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meaowvvv'
 
-  // No backend wired up yet — plug this into an email service (e.g. Formspree,
-  // EmailJS, or your own API route) before relying on it to actually reach you.
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+type Status = 'idle' | 'submitting' | 'success' | 'error'
+
+export function ContactForm() {
+  const [status, setStatus] = useState<Status>('idle')
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubmitted(true)
+    const form = event.currentTarget
+    setStatus('submitting')
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+      if (!response.ok) throw new Error('Form submission failed')
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
   }
 
-  if (submitted) {
+  if (status === 'success') {
     return (
       <Card className="border-border bg-card">
         <CardContent className="py-10 text-center">
@@ -53,8 +68,13 @@ export function ContactForm() {
             <Label htmlFor="message">Message</Label>
             <Textarea id="message" name="message" placeholder="Tell me a bit more..." rows={5} required />
           </div>
-          <Button type="submit" className="w-full sm:w-auto">
-            Send message
+          {status === 'error' ? (
+            <p className="text-sm text-destructive">
+              Something went wrong sending that — please try again, or email me directly.
+            </p>
+          ) : null}
+          <Button type="submit" className="w-full sm:w-auto" disabled={status === 'submitting'}>
+            {status === 'submitting' ? 'Sending...' : 'Send message'}
           </Button>
         </form>
       </CardContent>

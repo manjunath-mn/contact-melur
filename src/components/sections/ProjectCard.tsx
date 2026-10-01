@@ -9,14 +9,29 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="w-72 flex-none border-border bg-card transition-transform duration-300 hover:scale-105 hover:border-primary/50">
+    <Card className="relative w-72 min-h-[420px] flex-none origin-bottom border-border bg-card transition-all duration-300 ease-out hover:z-10 hover:scale-110 hover:border-primary/50 hover:shadow-2xl hover:shadow-black/40">
       <CardHeader>
-        <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-          {project.category} &middot; {project.year}
-        </p>
-        <CardTitle className="text-lg">{project.title}</CardTitle>
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-xs font-semibold tracking-wide text-primary uppercase">{project.category}</p>
+          <span className="font-mono text-sm text-muted-foreground">{project.year}</span>
+        </div>
+        <CardTitle className="mt-1 text-lg">{project.title}</CardTitle>
+        {project.logoUrl || project.organization ? (
+          <div className="mt-2 flex items-center gap-2">
+            {project.logoUrl ? (
+              <img
+                src={project.logoUrl}
+                alt={`${project.organization ?? project.title} logo`}
+                className="h-5 w-auto max-w-28 object-contain object-left"
+              />
+            ) : null}
+            {project.organization && !project.logoUrl ? (
+              <span className="text-xs text-muted-foreground">{project.organization}</span>
+            ) : null}
+          </div>
+        ) : null}
       </CardHeader>
-      <CardContent>
+      <CardContent className={project.liveUrl || project.repoUrl ? undefined : 'pb-4'}>
         <p className="text-sm text-muted-foreground">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
