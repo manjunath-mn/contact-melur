@@ -29,7 +29,7 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <h2 className="mt-10 text-lg font-bold">Skills</h2>
+        <h2 className="liquid-text mt-10 w-fit text-lg font-bold">Skills</h2>
         <div className="mt-4 flex flex-wrap gap-2">
           {profile.skills.map((skill) => (
             <Badge key={skill} variant="secondary" className="text-sm">
