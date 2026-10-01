@@ -17,6 +17,8 @@ export interface Profile {
   email: string
   phone?: string
   avatarUrl?: string
+  heroPortraitUrl?: string
+  heroBlurb?: string
   socials: SocialLink[]
   skills: string[]
 }
