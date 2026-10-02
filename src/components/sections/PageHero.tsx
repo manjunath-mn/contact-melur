@@ -18,7 +18,7 @@ export function PageHero({ eyebrow, title, subtitle, children }: PageHeroProps) 
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="liquid-text max-w-2xl text-4xl font-black tracking-tight sm:text-6xl">{title}</h1>
+        <h2 className="liquid-text max-w-2xl text-4xl font-black tracking-tight sm:text-6xl">{title}</h2>
         {subtitle ? (
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">{subtitle}</p>
         ) : null}

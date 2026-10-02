@@ -47,6 +47,7 @@ export interface ExperienceEntry {
   endDate: string
   stack: string[]
   highlights: string[]
+  logoUrl?: string
 }
 
 export interface EducationEntry {

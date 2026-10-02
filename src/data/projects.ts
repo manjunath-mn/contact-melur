@@ -13,7 +13,7 @@ export const projects: Project[] = [
     organization: 'MSc Dissertation · Leeds Beckett University',
     logoUrl: leedsBeckettLogo,
     liveUrl: 'https://api-test-generator-topaz.vercel.app/',
-    // TODO: add repoUrl once you have the GitHub link handy.
+    repoUrl: 'https://github.com/manjunath-mn/api-test-generator',
   },
   {
     id: 'personal-portfolio',
@@ -24,6 +24,18 @@ export const projects: Project[] = [
     tags: ['Next.js', 'Vercel', 'React'],
     year: 2025,
     liveUrl: 'https://portfolio-vert-nu-42.vercel.app/',
+    repoUrl: 'https://github.com/manjunath-mn/portfolio',
+    organization: 'Personal Project',
+  },
+  {
+    id: 'uniconvert',
+    title: 'UniConvert',
+    category: 'Featured Projects',
+    description:
+      'A full-stack unit converter — React.js/TypeScript frontend calling a Spring Boot REST API for Length, Weight, and Temperature conversions, with client-side validation and handling for the backend’s error responses.',
+    tags: ['React.js', 'TypeScript', 'Spring Boot', 'REST APIs'],
+    year: 2025,
+    repoUrl: 'https://github.com/manjunath-mn/unit-converter-frontend',
     organization: 'Personal Project',
   },
 ]

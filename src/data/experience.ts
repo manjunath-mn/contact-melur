@@ -1,4 +1,6 @@
 import type { ExperienceEntry } from '@/types'
+import agilepointLogo from '@/assets/logos/agilepoint-dark.svg'
+import weirLogo from '@/assets/logos/weir.svg'
 
 export const experience: ExperienceEntry[] = [
   {
@@ -8,6 +10,7 @@ export const experience: ExperienceEntry[] = [
     location: 'Bengaluru, India',
     startDate: 'Apr 2022',
     endDate: 'Jan 2025',
+    logoUrl: agilepointLogo,
     stack: ['React.js', 'TypeScript', 'Node.js', 'GraphQL', 'Apollo Client', 'Styled-Components', 'Storybook'],
     highlights: [
       'Developed a legacy JavaScript-to-React.js migration that cut initial page load time by ~60%, modernising the experience for every user of the product.',
@@ -26,6 +29,7 @@ export const experience: ExperienceEntry[] = [
     location: 'Bengaluru, India',
     startDate: 'Sep 2021',
     endDate: 'Mar 2022',
+    logoUrl: agilepointLogo,
     stack: ['React Hooks', 'Redux', 'Context API', 'JavaScript', 'Refactoring'],
     highlights: [
       'Refactored class-based components and HOCs into React Hooks, cutting boilerplate and simplifying state logic across the codebase.',
@@ -40,6 +44,7 @@ export const experience: ExperienceEntry[] = [
     location: 'Bengaluru, India',
     startDate: 'Jan 2020',
     endDate: 'Aug 2020',
+    logoUrl: weirLogo,
     stack: ['ASP.NET', 'Web APIs', 'Postman', 'Visual Studio'],
     highlights: [
       "Built and tested REST APIs (Postman, Visual Studio, ASP.NET) for the live 'Total Cost of Acquisition' tool used across the shipping and mining industries.",

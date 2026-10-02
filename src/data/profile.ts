@@ -19,9 +19,8 @@ export const profile: Profile = {
   heroPortraitUrl: heroPortrait,
   heroBlurb: 'OPEN TO FRONT-END ROLES AND FREELANCE COLLABORATIONS ACROSS THE UK.',
   socials: [
-    // TODO: swap in your real GitHub / LinkedIn URLs.
-    { label: 'GitHub', href: 'https://github.com' },
-    { label: 'LinkedIn', href: 'https://linkedin.com' },
+    { label: 'GitHub', href: 'https://github.com/manjunath-mn' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/manjunath-melur-nagaraj-89396415a/' },
     { label: 'Portfolio', href: 'https://portfolio-vert-nu-42.vercel.app/' },
   ],
   skills: [

@@ -28,9 +28,14 @@ function buildSketchbookDoc(entries: ExperienceEntry[]) {
         .map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`)
         .join('')
 
+      const logo = entry.logoUrl
+        ? `<img class="company-logo" src="${escapeHtml(entry.logoUrl)}" alt="${escapeHtml(entry.company)} logo" />`
+        : ''
+
       return `
         <article class="page" style="--rotate: ${rotation}deg;">
           <span class="tape"></span>
+          ${logo}
           <header class="page-header">
             <h2>${escapeHtml(entry.role)}</h2>
             <p class="company">${escapeHtml(entry.company)} &middot; ${escapeHtml(entry.location)}</p>
@@ -120,6 +125,16 @@ function buildSketchbookDoc(entries: ExperienceEntry[]) {
         height: 26px;
         background: rgba(214, 178, 122, 0.55);
         border: 1px solid rgba(43, 39, 33, 0.1);
+      }
+      .company-logo {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        max-height: 28px;
+        max-width: 110px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
       }
       .page-header h2 {
         font-family: 'Instrument Serif', serif;

@@ -28,7 +28,7 @@ export function ProfileHero({ name, tagline, blurb, portraitUrl, children }: Pro
 
       {portraitUrl ? (
         <div className="absolute inset-y-0 right-0 -z-10 w-full sm:w-3/5 md:w-1/2">
-          <img src={portraitUrl} alt="" className="h-full w-full object-cover object-top" />
+          <img src={portraitUrl} alt={name} className="h-full w-full object-cover object-top" />
           {/* The source photo has a solid cream backdrop baked into the pixels
               (not real transparency), so a painted vignette fades it into the
               dark page on all sides instead of showing a hard rectangle. */}

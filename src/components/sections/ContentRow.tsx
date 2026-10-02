@@ -27,7 +27,7 @@ export function ContentRow({ title, children }: ContentRowProps) {
 
   return (
     <section className="group/row relative mx-auto max-w-6xl px-4 py-6 sm:px-6">
-      <h2 className="liquid-text mb-4 w-fit text-xl font-bold">{title}</h2>
+      <h3 className="liquid-text mb-4 w-fit text-xl font-bold">{title}</h3>
 
       <Button
         variant="secondary"
